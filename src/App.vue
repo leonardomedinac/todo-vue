@@ -1,52 +1,62 @@
 <template>
-  <div id="app">
-    <h1 class="ui dividing centered header">Vue.js Todo App</h1>
-    <div class='ui three column centered grid'>
-      <div class='column'>
-        <todo-list v-bind:todos="todos"></todo-list>
-        <create-todo v-on:create-todo="createTodo"></create-todo>
-      </div>
-    </div>
+  <div>
+    <h1 class="ui dividing centered header">Lista de ToDo's</h1>
+    <CreateToDo v-on:create-todo="addTodo"></CreateToDo>
+    <ToDoList v-bind:todos="todos"></ToDoList>
   </div>
 </template>
 
 <script>
-import sweetalert from 'sweetalert';
-import TodoList from './components/TodoList';
-import CreateTodo from './components/CreateTodo';
+import ToDoList from "./components/ToDoList";
+import CreateToDo from "./components/CreateToDo";
+import sweetalert from "sweetalert";
 
 export default {
-  name: 'app',
+  name: "App",
   components: {
-    TodoList,
-    CreateTodo,
+    ToDoList,
+    CreateToDo
   },
   data() {
     return {
-      todos: [{
-        title: 'Todo A',
-        project: 'Project A',
-        done: false,
-      }, {
-        title: 'Todo B',
-        project: 'Project B',
-        done: true,
-      }, {
-        title: 'Todo C',
-        project: 'Project C',
-        done: false,
-      }, {
-        title: 'Todo D',
-        project: 'Project D',
-        done: false,
-      }],
+      todos: [
+        {
+          titulo: "Poner alarma",
+          descripcion: "Configurar hora adecuada",
+          estado: false
+        },
+        {
+          titulo: "Desayunar",
+          descripcion: "Preparar dieta adecuada",
+          estado: true
+        },
+        {
+          titulo: "Tomar el bus",
+          descripcion: "Verificar pasaje",
+          estado: true
+        }
+      ]
     };
   },
   methods: {
-    createTodo(newTodo) {
-      this.todos.push(newTodo);
-      sweetalert('Success!', 'To-Do created!', 'success');
-    },
-  },
+    addTodo(todo) {
+      sweetalert("Creado!", "To-Do creado correctamente", "success");
+      this.todos.push(todo);
+    }
+  }
 };
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+h1 {
+  margin-top: 10px !important;
+}
+</style>
