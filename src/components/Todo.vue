@@ -1,5 +1,5 @@
 <template>
-  <div class="ui centered card">
+  <div class="ui card todo">
     <div class="content" v-show="!isEditing">
       <div class="header">{{ todo.titulo }}</div>
       <div class="meta">{{ todo.descripcion }}</div>
@@ -67,3 +67,8 @@ export default {
   }
 };
 </script>
+<style>
+.todo {
+  margin: 10px 20px !important;
+}
+</style>
